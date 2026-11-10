@@ -4,7 +4,7 @@ import java.sql.DriverManager
 import java.sql.SQLException
 
 object DBConnection {
-    private val dbPath = "src/data/videojuegos.sqlite"
+    private val dbPath = "src/data/videogames.sqlite"
     private val dbFile = File(dbPath)
     private val url = "jdbc:sqlite:${dbFile.absolutePath}"
 
