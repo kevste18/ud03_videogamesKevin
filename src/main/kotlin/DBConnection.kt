@@ -12,7 +12,7 @@ object DBConnection {
         return try {
             DriverManager.getConnection(url)
         } catch (e: SQLException) {
-            println("Error al conectar con la base de datos: ${e.message}")
+            println("Error while trying to connect to the database ${e.message}")
             null
         }
     }
@@ -20,7 +20,7 @@ object DBConnection {
     // Función de prueba: verificar conexión
     fun testConnection(): Boolean {
         return getConnection()?.use { conn ->
-            println("Conexión establecida con éxito a ${dbFile.absolutePath}")
+            println("Connexion established successfully ${dbFile.absolutePath}")
             true
         } ?: false
     }
@@ -29,9 +29,9 @@ object DBConnection {
     fun closeConnection(conn: Connection?) {
         try {
             conn?.close()
-            println("Conexión cerrada correctamente.")
+            println("Connexion closed successfully.")
         } catch (e: SQLException) {
-            println("Error al cerrar la conexión: ${e.message}")
+            println("Error trying to close the connexion ${e.message}")
         }
     }
 }

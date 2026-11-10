@@ -1,15 +1,14 @@
-// Fichero: PlantasDAO.kt
 
-object PlantasDAO {
+object VideogameDAO {
 
     fun showVideogames(): List<Videogame> {
-        val lista = mutableListOf<Videogame>()
+        val list = mutableListOf<Videogame>()
         val sql = "SELECT * FROM videogames"
         DBConnection.getConnection()?.use { conn ->
             conn.prepareStatement(sql).use { stmt ->
                 val rs = stmt.executeQuery()
                 while (rs.next()) {
-                    lista.add(Videogame(
+                    list.add(Videogame(
                         id = rs.getInt("id"),
                         title = rs.getString("title"),
                         genre = rs.getString("genre"),
@@ -19,7 +18,7 @@ object PlantasDAO {
                 }
             }
         }
-        return lista
+        return list
     }
 
     fun searchById(id: Int): Videogame? {
@@ -56,11 +55,11 @@ object PlantasDAO {
                 }
             }
         }
-    }x
+    }
 
     fun updateVideogame(videogame : Videogame) {
         if (videogame.id == null) {
-            println("Error: No se puede actualizar una planta sin ID.")
+            println("Error: The videogame needs an ID in order to be updated.")
             return
         }
         val sql = "UPDATE videogames SET title = ?, genre = ?, release_date = ?, rating = ? WHERE id = ?"
