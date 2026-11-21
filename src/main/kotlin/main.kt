@@ -2,16 +2,17 @@ fun main() {
 
     println("=== Videogames List ===")
     VideogameDAO.showVideogames().forEach {
-        println(" - [${it.id}], Title: ${it.title}, Genre: (${it.genre}), Release Date: ${it.releaseDate}, Rating: ${it.rating}€")
+        println(" - [${it.id}], Title: ${it.title}, Genre: (${it.genre}), Release Date: ${it.releaseDate}, Rating: ${it.rating}")
     }
 
     val videogame = VideogameDAO.searchById(3)
     if (videogame != null) {
-        println("Videogame found: [${videogame.id}], Title: ${videogame.title}, Genre: (${videogame.genre}), Release Date: ${videogame.releaseDate}, Rating: ${videogame.rating}€")
+        println("Videogame found: [${videogame.id}], Title: ${videogame.title}, Genre: (${videogame.genre}), Release Date: ${videogame.releaseDate}, Rating: ${videogame.rating}")
     } else {
         println("No videogame found.")
     }
 
+    /*
     VideogameDAO.createVideogame(
         Videogame(
             title = "GTA VI",
@@ -20,6 +21,8 @@ fun main() {
             rating = 9.5
         )
     )
+
+     */
 
     VideogameDAO.updateVideogame(
         Videogame(
@@ -31,8 +34,7 @@ fun main() {
         )
     )
 
-    VideogameDAO.deleteVideogame(6)
+    // VideogameDAO.deleteVideogame(6)
 
-    ListDAO.addToList(1, 3, "2026-11-21")
-    ListDAO.addToList(1, 99, "2026-11-21")
+    // ListDAO.addToList(2, 4, "2026-11-21")
 }
