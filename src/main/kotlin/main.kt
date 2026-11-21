@@ -32,4 +32,7 @@ fun main() {
     )
 
     VideogameDAO.deleteVideogame(6)
+
+    ListDAO.addToList(1, 3, "2026-11-21")
+    ListDAO.addToList(1, 99, "2026-11-21")
 }
