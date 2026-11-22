@@ -77,7 +77,7 @@ object VideogameDAO {
                 stmt.setDouble(4, videogame.rating)
                 stmt.setInt(5, videogame.id)
                 if (stmt.executeUpdate() > 0) {
-                    println(".model.Videogame with ID ${videogame.id} updated.")
+                    println("Videogame with ID ${videogame.id} updated.")
                 } else {
                     println("No videogame found with ID ${videogame.id}")
                 }
@@ -91,7 +91,7 @@ object VideogameDAO {
             conn.prepareStatement(sql).use { stmt ->
                 stmt.setInt(1, id)
                 if (stmt.executeUpdate() > 0) {
-                    println(".model.Videogame with ID: $id deleted successfully. ")
+                    println("Videogame with ID: $id deleted successfully. ")
                 } else {
                     println("No videogame found with the ID: $id.")
                 }
