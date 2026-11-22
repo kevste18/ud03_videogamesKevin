@@ -1,3 +1,6 @@
+import dao.VideogameDAO
+import model.Videogame
+
 fun main() {
 
     println("=== Videogames List ===")
@@ -7,14 +10,14 @@ fun main() {
 
     val videogame = VideogameDAO.searchById(3)
     if (videogame != null) {
-        println("Videogame found: [${videogame.id}], Title: ${videogame.title}, Genre: (${videogame.genre}), Release Date: ${videogame.releaseDate}, Rating: ${videogame.rating}")
+        println(".model.Videogame found: [${videogame.id}], Title: ${videogame.title}, Genre: (${videogame.genre}), Release Date: ${videogame.releaseDate}, Rating: ${videogame.rating}")
     } else {
         println("No videogame found.")
     }
 
     /*
-    VideogameDAO.createVideogame(
-        Videogame(
+    dao.VideogameDAO.createVideogame(
+        .model.Videogame(
             title = "GTA VI",
             genre = "Action",
             releaseDate = 2026,
@@ -34,7 +37,7 @@ fun main() {
         )
     )
 
-    // VideogameDAO.deleteVideogame(6)
+    // dao.VideogameDAO.deleteVideogame(6)
 
-    // ListDAO.addToList(2, 4, "2026-11-21")
+    // dao.ListDAO.addToList(2, 4, "2026-11-21")
 }

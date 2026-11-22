@@ -1,3 +1,5 @@
+package model
+
 data class Videogame(
     val id: Int? = null,
     val title: String,

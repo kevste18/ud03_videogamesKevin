@@ -1,7 +1,12 @@
+package dao
+
+import db.DBConnection
+import model.Videogame
 import java.sql.Connection
 import java.sql.SQLException
+import kotlin.use
 
-object ListDAO {
+object GameListEntryDAO {
 
     fun addToList(idList: Int, idVideogame: Int, date: String) {
 
@@ -28,9 +33,8 @@ object ListDAO {
 
             }
 
-
             conn?.commit()
-            println("The list was added succesfully.")
+            println("Videogame added to the list.")
 
 
         } catch (e: SQLException) {
@@ -40,5 +44,33 @@ object ListDAO {
             conn?.autoCommit = true
             conn?.close()
         }
+    }
+
+    fun getVideogamesFromList(idList: Int): List<Videogame> {
+
+        val sql = "SELECT v.* FROM videogames v JOIN videogames_lists vl ON v.id = vl.id_videogame WHERE vl.id_list = ?"
+
+        val videogamesList = mutableListOf<Videogame>()
+
+        DBConnection.getConnection()?.use { conn ->
+            conn.prepareStatement(sql).use { stmt ->
+
+                stmt.setInt(1, idList)
+
+                val rs = stmt.executeQuery()
+
+                while (rs.next()) {
+                    val id = rs.getInt("id")
+                    val title = rs.getString("title")
+                    val genre = rs.getString("genre")
+                    val releaseDate = rs.getInt("release_date")
+                    val rating = rs.getDouble("rating")
+
+                    videogamesList.add(Videogame(id, title, genre, releaseDate, rating))
+                }
+            }
+        }
+
+        return videogamesList
     }
 }

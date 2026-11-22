@@ -1,3 +1,7 @@
+package dao
+
+import db.DBConnection
+import model.Videogame
 
 object VideogameDAO {
 
@@ -8,13 +12,15 @@ object VideogameDAO {
             conn.prepareStatement(sql).use { stmt ->
                 val rs = stmt.executeQuery()
                 while (rs.next()) {
-                    list.add(Videogame(
-                        id = rs.getInt("id"),
-                        title = rs.getString("title"),
-                        genre = rs.getString("genre"),
-                        releaseDate = rs.getInt("release_date"),
-                        rating = rs.getDouble("rating")
-                    ))
+                    list.add(
+                        Videogame(
+                            id = rs.getInt("id"),
+                            title = rs.getString("title"),
+                            genre = rs.getString("genre"),
+                            releaseDate = rs.getInt("release_date"),
+                            rating = rs.getDouble("rating")
+                        )
+                    )
                 }
             }
         }
@@ -51,7 +57,7 @@ object VideogameDAO {
                 stmt.setInt(3, videogame.releaseDate)
                 stmt.setDouble(4, videogame.rating)
                 if (stmt.executeUpdate() > 0) {
-                    println("${videogame.title} succesfully added.")
+                    println("${videogame.title} added succesfully.")
                 }
             }
         }
@@ -71,7 +77,7 @@ object VideogameDAO {
                 stmt.setDouble(4, videogame.rating)
                 stmt.setInt(5, videogame.id)
                 if (stmt.executeUpdate() > 0) {
-                    println("Videogame with ID ${videogame.id} updated.")
+                    println(".model.Videogame with ID ${videogame.id} updated.")
                 } else {
                     println("No videogame found with ID ${videogame.id}")
                 }
@@ -85,7 +91,7 @@ object VideogameDAO {
             conn.prepareStatement(sql).use { stmt ->
                 stmt.setInt(1, id)
                 if (stmt.executeUpdate() > 0) {
-                    println("Videogame with ID: $id deleted successfully. ")
+                    println(".model.Videogame with ID: $id deleted successfully. ")
                 } else {
                     println("No videogame found with the ID: $id.")
                 }
