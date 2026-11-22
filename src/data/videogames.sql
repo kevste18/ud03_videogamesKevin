@@ -1,1 +1,1 @@
-SELECT * FROM vide
+SELECT * FROM lists
